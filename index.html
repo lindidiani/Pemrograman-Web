@@ -147,9 +147,9 @@
             </a>
         </div>
         <div class="menu">
-            <a href="index.html"><button>Beranda</button></a>
-            <a href="index2.html"><button>Resume</button></a>
-            <a href="index1.html"><button>Kontak</button></a>
+            <button onclick="loadPage('index.html')">Beranda</button>
+            <button onclick="loadPage('index2.html')">Resume</button>
+            <button onclick="loadPage('index1.html')">Kontak</button>
         </div>
         <footer>
             <p>&copy; 2025 Lindi Diani Tirasafira. All Right Reserved.</p>
@@ -162,5 +162,19 @@
             <a class="cv" href="https://drive.google.com/file/d/1M-YVh6UwsYj2yCV3kt7Gv8YLg6YwHI-_/view?usp=drivedk"><button>CV</button></a>
         </div>
     </div>
+    <script>
+        function loadPage(page) {
+            fetch(page) 
+                .then(response => response.text()) 
+                .then(data => {
+                    document.getElementById("content").innerHTML = data;
+                    history.pushState(null, "", page);
+                })
+                .catch(error => console.error("Gagal memuat halaman:", error));
+    }
+    document.addEventListener("DOMContentLoaded", function () {
+        loadPage('home.html'); // Halaman awal saat pertama kali dibuka
+    });
+    </script>
 </body>
 </html>
